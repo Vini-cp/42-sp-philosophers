@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 20:49:25 by coder             #+#    #+#             */
-/*   Updated: 2022/04/24 23:05:49 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/04/25 01:38:38 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	ft_initiate_philosophers(t_philo *philo)
 	if (error_no != E_SUCCESS)
 	{
 		ft_free(philo);
-		return (ft_print_error(error_no));	
+		return (ft_print_error(error_no));
 	}
 	create_philosophers(philo);
 	return (E_SUCCESS);
