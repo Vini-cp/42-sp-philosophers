@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 11:33:26 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/04/24 23:06:26 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/04/25 01:36:11 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int argc, char **argv)
 		return (0);
 	if (ft_initiate_philosophers(&philo) != E_SUCCESS)
 		return (0);
+	ft_run_philosophers();
 	ft_free(&philo);
 	return (0);
 }

@@ -6,17 +6,18 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 11:34:16 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/04/24 23:13:27 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/04/25 01:39:52 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
+# include <pthread.h>
+# include <stdio.h>
+# include <stdlib.h>
 # include <sys/time.h>
 # include <unistd.h>
-# include <stdlib.h>
-# include <pthread.h>
 
 typedef enum e_config_error
 {
@@ -30,6 +31,15 @@ typedef enum e_config_error
 	E_INSTATIATE_MUTEX,
 	E_NBR_OF_ERRORS,
 }	t_error;
+
+typedef enum e_actions
+{
+	E_TAKE_A_FORK,
+	E_EAT,
+	E_SLEEP,
+	E_THINK,
+	E_DIE,
+}	t_actions;
 
 typedef struct s_erro_rdesc {
 	int		code;
@@ -58,9 +68,12 @@ typedef struct s_philo
 
 int			ft_initiate_constraints(int argc, char **argv, t_philo *philo);
 int			ft_initiate_philosophers(t_philo *philo);
+void		ft_run_philosophers(void);
 int			ft_atoi(const char *str);
 void		ft_free(t_philo *philo);
 long long	ft_get_time_now(void);
+void		ft_print_action(long long action_time, int action_id,
+				int philosopher_id);
 int			ft_print_error(int error_code);
 
 #endif

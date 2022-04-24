@@ -3,9 +3,11 @@ NAME		= philo
 SRCS_LIST 	= main.c \
 			  philosopher/ft_initiate_constraints.c \
 			  philosopher/ft_initiate_philosophers.c \
+			  philosopher/ft_run_philosophers.c \
 			  utils/ft_atoi.c \
 			  utils/ft_free.c \
 			  utils/ft_get_time_now.c \
+			  utils/ft_print_action.c \
 			  utils/ft_print_error.c
 
 SRC_FOLDER 	= src
