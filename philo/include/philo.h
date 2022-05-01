@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 11:34:16 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/04/25 01:39:52 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/05/01 17:25:57 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ typedef enum e_config_error
 	E_INVALID_TIME_TO_SLEEP,
 	E_INVALID_NUMBER_OF_TIMES_PHILOSOPHER_MUST_EAT,
 	E_INSTATIATE_MUTEX,
+	E_MALLOC_FORKS,
+	E_MALLOC_PHILOSOPHERS,
 	E_NBR_OF_ERRORS,
-}	t_error;
+}	e_error;
 
 typedef enum e_actions
 {
@@ -39,21 +41,12 @@ typedef enum e_actions
 	E_SLEEP,
 	E_THINK,
 	E_DIE,
-}	t_actions;
+}	e_actions;
 
 typedef struct s_erro_rdesc {
 	int		code;
 	char	*message;
 }	t_error_desc;
-
-typedef struct s_philosopher
-{
-	int			id;
-	int			left_fork_id;
-	int			right_fork_id;
-	int			time_since_last_meal;
-	pthread_t	thread_id;
-}	t_philosopher;
 
 typedef struct s_philo
 {
@@ -62,18 +55,31 @@ typedef struct s_philo
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				number_of_times_each_philosopher_must_eat;
+	long long		start_time;
 	pthread_mutex_t	*forks;
-	t_philosopher	*philosophers;
 }	t_philo;
 
-int			ft_initiate_constraints(int argc, char **argv, t_philo *philo);
-int			ft_initiate_philosophers(t_philo *philo);
+typedef struct s_philosopher
+{
+	int			id;
+	int			left_fork_id;
+	int			right_fork_id;
+	long long	time_since_last_meal;
+	int			eat_no_times;
+	pthread_t	thread_id;
+	t_philo		*philo;
+}	t_philosopher;
+
+e_error		ft_initiate_constraints(int argc, char **argv, t_philo *philo);
+e_error		ft_initiate_forks(t_philo *philo);
+e_error		ft_initiate_philosophers(t_philo *philo, t_philosopher **philosophers);
 void		ft_run_philosophers(void);
 int			ft_atoi(const char *str);
 void		ft_free(t_philo *philo);
 long long	ft_get_time_now(void);
 void		ft_print_action(long long action_time, int action_id,
 				int philosopher_id);
-int			ft_print_error(int error_code);
+void		ft_print_philosophers(int size, t_philosopher *philosophers);
+e_error		ft_print_error(int error_code);
 
 #endif
