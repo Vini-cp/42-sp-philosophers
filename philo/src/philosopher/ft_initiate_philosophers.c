@@ -5,57 +5,46 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/12 20:49:25 by coder             #+#    #+#             */
-/*   Updated: 2022/04/25 01:38:38 by vcordeir         ###   ########.fr       */
+/*   Created: 2022/04/28 03:33:59 by vcordeir          #+#    #+#             */
+/*   Updated: 2022/05/01 17:26:17 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/philo.h"
 
-static int	create_forks(t_philo *philo)
+static e_error	create_philosophers(t_philo *philo, t_philosopher **philosophers)
 {
 	int	i;
+	int	size;
 
-	philo->forks = malloc(
-			philo->number_of_philosophers * sizeof(pthread_mutex_t));
+	size = philo->number_of_philosophers;
+	*philosophers = malloc(size * sizeof(t_philosopher));
+	if (*philosophers == NULL)
+		return (E_MALLOC_PHILOSOPHERS);
 	i = 0;
-	while (i < philo->number_of_philosophers)
+	while (i < size)
 	{
-		if (pthread_mutex_init(&(philo->forks[i]), NULL))
-			return (E_INSTATIATE_MUTEX);
+		(*philosophers)[i].id = i + 1;
+		(*philosophers)[i].left_fork_id = i;
+		(*philosophers)[i].right_fork_id = i % (size) + 1;
+		(*philosophers)[i].time_since_last_meal = 0;
+		(*philosophers)[i].eat_no_times = 0;
+		(*philosophers)[i].philo = philo;
 		i++;
 	}
 	return (E_SUCCESS);
 }
 
-static void	create_philosophers(t_philo *philo)
+e_error	ft_initiate_philosophers(t_philo *philo, t_philosopher **philosophers)
 {
-	int	i;
+	e_error	error_no;
 
-	philo->philosophers = malloc(
-			philo->number_of_philosophers * sizeof(t_philosopher));
-	i = 0;
-	while (i < philo->number_of_philosophers)
-	{
-		(philo->philosophers[i]).id = i + 1;
-		(philo->philosophers[i]).left_fork_id = i;
-		(philo->philosophers[i]).right_fork_id = i
-			% (philo->number_of_philosophers) + 1;
-		(philo->philosophers[i]).time_since_last_meal = 0;
-		i++;
-	}	
-}
-
-int	ft_initiate_philosophers(t_philo *philo)
-{
-	int	error_no;
-
-	error_no = create_forks(philo);
+	error_no = create_philosophers(philo, philosophers);
 	if (error_no != E_SUCCESS)
 	{
-		ft_free(philo);
+		if (*philosophers)
+			free(*philosophers);
 		return (ft_print_error(error_no));
 	}
-	create_philosophers(philo);
 	return (E_SUCCESS);
 }

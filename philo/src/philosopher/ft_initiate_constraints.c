@@ -6,14 +6,15 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 18:11:53 by coder             #+#    #+#             */
-/*   Updated: 2022/04/24 23:04:10 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/05/01 18:01:29 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/philo.h"
 
-static int	check_input(t_philo *philo, int argc)
+static e_error	check_input(t_philo *philo, int argc)
 {
+	philo->forks = NULL; 
 	if (philo->number_of_philosophers <= 0)
 		return (E_INVALID_NUMBER_OF_PHILOSOPHERS);
 	else if (philo->time_to_die <= 0)
@@ -24,12 +25,12 @@ static int	check_input(t_philo *philo, int argc)
 		return (E_INVALID_TIME_TO_SLEEP);
 	if (argc == 6 && philo->number_of_times_each_philosopher_must_eat <= 0)
 		return (E_INVALID_NUMBER_OF_TIMES_PHILOSOPHER_MUST_EAT);
-	else
+	else if (argc == 5)
 		philo->number_of_times_each_philosopher_must_eat = -1;
 	return (E_SUCCESS);
 }
 
-int	ft_initiate_constraints(int argc, char **argv, t_philo *philo)
+e_error	ft_initiate_constraints(int argc, char **argv, t_philo *philo)
 {
 	int	error_no;
 
