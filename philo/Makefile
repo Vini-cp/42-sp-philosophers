@@ -2,13 +2,13 @@ NAME		= philo
 
 SRCS_LIST 	= main.c \
 			  philosopher/ft_initiate_constraints.c \
+			  philosopher/ft_initiate_forks.c \
 			  philosopher/ft_initiate_philosophers.c \
-			  philosopher/ft_run_philosophers.c \
 			  utils/ft_atoi.c \
-			  utils/ft_free.c \
 			  utils/ft_get_time_now.c \
 			  utils/ft_print_action.c \
-			  utils/ft_print_error.c
+			  utils/ft_print_error.c \
+			  utils/ft_print_philosophers.c
 
 SRC_FOLDER 	= src
 
@@ -21,6 +21,8 @@ OBJS 		= $(addprefix ${OBJ_FOLDER}/, ${SRCS:.c=.o})
 CFLAGS 		= -Werror -Wall -Wextra
 
 CC 			= gcc
+
+ARGS		= 10 1000 1000 1000 10
 
 .PHONY: all clean fclean re
 
@@ -43,3 +45,6 @@ re: fclean all
 
 valgrind:
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./philo ${ARGS}
+
+test:
+	./philo ${ARGS}
