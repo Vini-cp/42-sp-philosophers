@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 18:11:53 by coder             #+#    #+#             */
-/*   Updated: 2022/05/01 18:01:29 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/05/03 02:33:08 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ e_error	ft_initiate_constraints(int argc, char **argv, t_philo *philo)
 	philo->time_to_die = ft_atoi(argv[2]);
 	philo->time_to_eat = ft_atoi(argv[3]);
 	philo->time_to_sleep = ft_atoi(argv[4]);
+	philo->has_died = 0;
+	philo->number_of_philosophers_who_have_eaten = 0;
 	if (argc == 6)
 		philo->number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]);
 	error_no = check_input(philo, argc);
