@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 02:22:35 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/05/01 17:29:33 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/05/05 01:02:39 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_print_philosophers(int size, t_philosopher *philosophers)
 		printf("ID      : %d\n", philosophers[i].id);
 		printf("LF ID   : %d\n", philosophers[i].left_fork_id);
 		printf("RF ID   : %d\n", philosophers[i].right_fork_id);
-		printf("TIME LM : %lld\n", philosophers[i].time_since_last_meal);
+		printf("TIME LM : %lld\n", philosophers[i].last_meal_was_at);
 		printf("EAT NO  : %d\n", philosophers[i].eat_no_times);
 		i++;
 	}
