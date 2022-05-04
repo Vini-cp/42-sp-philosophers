@@ -35,7 +35,7 @@ ARGS		:= 3 5000 1000 1000 5
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(PFLGAS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(PFLAGS)
 
 $(OBJ_FOLDER)/%.o: %.c
 	@mkdir -p $(@D)
