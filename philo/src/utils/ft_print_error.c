@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:24:51 by coder             #+#    #+#             */
-/*   Updated: 2022/05/01 02:10:47 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/05/05 00:31:15 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static char	*search_error(int error_code)
 
 e_error	ft_print_error(int error_code)
 {
+	if (error_code == E_SUCCESS)
+		return (E_SUCCESS);
 	printf("%s\n", search_error(error_code));
 	return (error_code);
 }
