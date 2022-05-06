@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 01:26:03 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/05/05 02:09:37 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/05/06 03:33:09 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	ft_philosopher_has_died(t_philosopher **philosophers)
 				philo->has_died = 1;
 			}
 			pthread_mutex_unlock(&((*philosophers)[i].last_meal_checker));
+			i++;
 		}
 		if (philo->has_died || philo->number_of_philosophers_who_have_eaten
 			== philo->number_of_philosophers)
