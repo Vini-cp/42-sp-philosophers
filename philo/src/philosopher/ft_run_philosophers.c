@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 00:25:37 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/05/05 02:10:22 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/05/06 03:42:13 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	ft_philosopher_eat(t_philosopher *philosopher)
 	pthread_mutex_lock(&(philosopher->last_meal_checker));
 	ft_print_action(philosopher->id, E_EAT, philo->start_time);
 	philosopher->last_meal_was_at = ft_get_time_now();
+	usleep(philo->time_to_eat * 1000);
 	pthread_mutex_unlock(&(philosopher->last_meal_checker));
 	philosopher->eat_no_times++;
 	pthread_mutex_unlock(&(philo->forks[philosopher->left_fork_id]));
@@ -37,6 +38,8 @@ void	*ft_run_philosophers(void *arg)
 
 	philosopher = (t_philosopher *)arg;
 	philo = philosopher->philo;
+	if (philosopher->id % 2 == 0)
+		usleep(50);
 	while (!philo->has_died)
 	{
 		ft_philosopher_eat(philosopher);
