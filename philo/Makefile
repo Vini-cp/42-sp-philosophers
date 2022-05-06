@@ -12,7 +12,8 @@ SRCS_LIST 	:= main.c \
 			  utils/ft_get_time_now.c \
 			  utils/ft_print_action.c \
 			  utils/ft_print_error.c \
-			  utils/ft_print_philosophers.c
+			  utils/ft_print_philosophers.c \
+			  utils/ft_time_diff.c
 
 SRC_FOLDER 	:= src
 
