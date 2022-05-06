@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 03:33:59 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/05/05 00:59:42 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/05/05 02:41:52 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static e_error	create_philosophers(t_philo *philo, t_philosopher **philosophers)
 	{
 		(*philosophers)[i].id = i + 1;
 		(*philosophers)[i].left_fork_id = i;
-		(*philosophers)[i].right_fork_id = i % (size) + 1;
+		(*philosophers)[i].right_fork_id = (i + 1) % (size);
 		(*philosophers)[i].last_meal_was_at = 0;
 		(*philosophers)[i].eat_no_times = 0;
 		(*philosophers)[i].philo = philo;
