@@ -6,23 +6,23 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 20:49:25 by coder             #+#    #+#             */
-/*   Updated: 2022/05/03 02:31:31 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/05/07 22:36:23 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/philo.h"
 
-static e_error	ft_create_forks(int size, pthread_mutex_t **forks)
+static e_error	ft_create_forks(int size, t_philo *philo)
 {
 	int	i;
 
-	*forks = malloc(size * sizeof(pthread_mutex_t));
-	if (*forks == NULL)
+	philo->forks = malloc(size * sizeof(pthread_mutex_t));
+	if (philo->forks == NULL)
 		return (E_MALLOC_FORKS);
 	i = 0;
 	while (i < size)
 	{
-		if (pthread_mutex_init(&((*forks)[i]), NULL))
+		if (pthread_mutex_init(&(philo->forks[i]), NULL))
 			return (E_INSTATIATE_MUTEX);
 		i++;
 	}
@@ -40,7 +40,7 @@ e_error	ft_initiate_forks(t_philo *philo)
 {
 	e_error	error_no;
 
-	error_no = ft_create_forks(philo->number_of_philosophers, &philo->forks);
+	error_no = ft_create_forks(philo->number_of_philosophers, philo);
 	error_no = ft_create_eat_checker(philo);
 	if (error_no != E_SUCCESS)
 	{
