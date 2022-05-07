@@ -6,11 +6,24 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 00:25:37 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/05/06 03:42:13 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/05/07 17:31:02 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/philo.h"
+
+static void	ft_philosopher_sleep(t_philo *philo, long long time_to_wait)
+{
+	long long	beginning;
+
+	beginning = ft_get_time_now();
+	while (!(philo->has_died))
+	{
+		if (ft_time_diff(beginning, ft_get_time_now()) >= time_to_wait)
+			break ;
+		usleep(1000);
+	}
+}
 
 static void	ft_philosopher_eat(t_philosopher *philosopher)
 {
@@ -18,14 +31,14 @@ static void	ft_philosopher_eat(t_philosopher *philosopher)
 
 	philo = philosopher->philo;
 	pthread_mutex_lock(&(philo->forks[philosopher->left_fork_id]));
-	ft_print_action(philosopher->id, E_TAKE_A_FORK, philo->start_time);
+	ft_print_action(philosopher->id, E_TAKE_A_FORK, philo);
 	pthread_mutex_lock(&(philo->forks[philosopher->right_fork_id]));
-	ft_print_action(philosopher->id, E_TAKE_A_FORK, philo->start_time);
+	ft_print_action(philosopher->id, E_TAKE_A_FORK, philo);
 	pthread_mutex_lock(&(philosopher->last_meal_checker));
-	ft_print_action(philosopher->id, E_EAT, philo->start_time);
+	ft_print_action(philosopher->id, E_EAT, philo);
 	philosopher->last_meal_was_at = ft_get_time_now();
-	usleep(philo->time_to_eat * 1000);
 	pthread_mutex_unlock(&(philosopher->last_meal_checker));
+	ft_philosopher_sleep(philo, philo->time_to_eat);
 	philosopher->eat_no_times++;
 	pthread_mutex_unlock(&(philo->forks[philosopher->left_fork_id]));
 	pthread_mutex_unlock(&(philo->forks[philosopher->right_fork_id]));
@@ -46,9 +59,9 @@ void	*ft_run_philosophers(void *arg)
 		if (philo->number_of_times_each_philosopher_must_eat
 			== philosopher->eat_no_times)
 			break ;
-		ft_print_action(philosopher->id, E_SLEEP, philo->start_time);
-		usleep(philo->time_to_sleep * 1000);
-		ft_print_action(philosopher->id, E_THINK, philo->start_time);
+		ft_print_action(philosopher->id, E_SLEEP, philo);
+		ft_philosopher_sleep(philo, philo->time_to_sleep);
+		ft_print_action(philosopher->id, E_THINK, philo);
 	}
 	pthread_mutex_lock(&(philo->finished_eating));
 	philo->number_of_philosophers_who_have_eaten++;
