@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:24:51 by coder             #+#    #+#             */
-/*   Updated: 2022/05/05 00:31:15 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/05/07 23:53:46 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static char	*search_error(int error_code)
 		return ("Time to sleep must be positive.");
 	else if (error_code == E_INVALID_NUMBER_OF_TIMES_PHILOSOPHER_MUST_EAT)
 		return ("Number of times each philosopher eat must be positive.");
+	else if (error_code == E_NOT_A_NUMBER)
+		return ("Wrong input, only number are accepted!");
 	else if (error_code == E_INSTATIATE_MUTEX)
 		return ("Mutex error.");
 	else if (error_code == E_MALLOC_FORKS)

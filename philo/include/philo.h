@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 11:34:16 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/05/07 17:48:45 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/05/07 23:52:18 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef enum e_config_error
 	E_INVALID_TIME_TO_EAT,
 	E_INVALID_TIME_TO_SLEEP,
 	E_INVALID_NUMBER_OF_TIMES_PHILOSOPHER_MUST_EAT,
+	E_NOT_A_NUMBER,
 	E_INSTATIATE_MUTEX,
 	E_MALLOC_FORKS,
 	E_MALLOC_PHILOSOPHERS,
