@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 11:34:16 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/05/06 03:46:45 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/05/07 17:48:45 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ typedef struct s_philosopher
 	t_philo			*philo;
 }	t_philosopher;
 
-void		ft_exit_threads(t_philosopher *philosophers);
+void		ft_exit_threads(t_philo *philo, t_philosopher **philosophers);
 e_error		ft_initiate_constraints(int argc, char **argv, t_philo *philo);
 e_error		ft_initiate_forks(t_philo *philo);
 e_error		ft_initiate_philosophers(t_philo *philo, t_philosopher **philosophers);
@@ -85,7 +85,7 @@ void		*ft_run_philosophers(void *arg);
 int			ft_atoi(const char *str);
 int			ft_free(t_philo *philo, t_philosopher **philosophers, int error_code);
 long long	ft_get_time_now(void);
-void		ft_print_action(int philosopher_id, int action_id, long long start_time);
+void		ft_print_action(int philosopher_id, int action_id, t_philo *philo);
 e_error		ft_print_error(int error_code);
 void		ft_print_philosophers(int size, t_philosopher *philosophers);
 long long	ft_time_diff(long long before, long long after);
