@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 01:26:03 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/05/06 03:33:09 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/05/07 17:26:38 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ void	ft_philosopher_has_died(t_philosopher **philosophers)
 			if (ft_time_diff((*philosophers)[i].last_meal_was_at,
 					ft_get_time_now()) > philo->time_to_die)
 			{
-				ft_print_action((*philosophers)[i].id, E_DIE, philo->start_time);
+				ft_print_action((*philosophers)[i].id, E_DIE, philo);
 				philo->has_died = 1;
+				break ;
 			}
 			pthread_mutex_unlock(&((*philosophers)[i].last_meal_checker));
 			i++;
