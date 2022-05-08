@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 18:16:54 by coder             #+#    #+#             */
-/*   Updated: 2022/02/11 18:17:56 by coder            ###   ########.fr       */
+/*   Updated: 2022/05/08 02:51:58 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	ft_isspace(int c)
 		return (0);
 }
 
-static	int	calculate_nb(const char *str, int mult)
+static	int	ft_calculate_nb(const char *str, int mult)
 {
 	int	res;
 
@@ -56,7 +56,7 @@ int	ft_atoi(const char *str)
 		else if (*str == '+' && bool_first)
 			bool_first = 0;
 		else if (ft_isdigit(*str))
-			return (calculate_nb(str, mult));
+			return (ft_calculate_nb(str, mult));
 		else if (!(ft_isspace(*str) && bool_first))
 			return (0);
 		str++;

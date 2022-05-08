@@ -6,13 +6,13 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 16:24:51 by coder             #+#    #+#             */
-/*   Updated: 2022/05/08 02:42:41 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/05/08 02:51:07 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/philo.h"
 
-static char	*search_error(int error_code)
+static char	*ft_search_error(int error_code)
 {
 	if (error_code == E_INVALID_INPUT)
 		return ("Invalid input, it should have the following arguments:\n\n"
@@ -45,6 +45,6 @@ e_error	ft_print_error(int error_code)
 {
 	if (error_code == E_SUCCESS)
 		return (E_SUCCESS);
-	printf("%s\n", search_error(error_code));
+	printf("%s\n", ft_search_error(error_code));
 	return (error_code);
 }
