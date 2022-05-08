@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 11:34:16 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/05/07 23:52:18 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/05/08 02:56:42 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef enum e_config_error
 	E_MALLOC_PHILOSOPHERS,
 	E_THREAD_CREATION,
 	E_NBR_OF_ERRORS,
-}	e_error;
+}	t_enum_error;
 
 typedef enum e_actions
 {
@@ -44,12 +44,7 @@ typedef enum e_actions
 	E_THINK,
 	E_DIE,
 	E_NBR_OF_ACTIONS,
-}	e_actions;
-
-typedef struct s_erro_rdesc {
-	int		code;
-	char	*message;
-}	t_error_desc;
+}	t_enum_actions;
 
 typedef struct s_philo
 {
@@ -77,18 +72,21 @@ typedef struct s_philosopher
 	t_philo			*philo;
 }	t_philosopher;
 
-void		ft_exit_threads(t_philo *philo, t_philosopher **philosophers);
-e_error		ft_initiate_constraints(int argc, char **argv, t_philo *philo);
-e_error		ft_initiate_forks(t_philo *philo);
-e_error		ft_initiate_philosophers(t_philo *philo, t_philosopher **philosophers);
-void		ft_philosopher_has_died(t_philosopher **philosophers);
-void		*ft_run_philosophers(void *arg);
-int			ft_atoi(const char *str);
-int			ft_free(t_philo *philo, t_philosopher **philosophers, int error_code);
-long long	ft_get_time_now(void);
-void		ft_print_action(int philosopher_id, int action_id, t_philo *philo);
-e_error		ft_print_error(int error_code);
-void		ft_print_philosophers(int size, t_philosopher *philosophers);
-long long	ft_time_diff(long long before, long long after);
+void			ft_exit_threads(t_philo *philo, t_philosopher **philosophers);
+t_enum_error	ft_initiate_constraints(int argc, char **argv, t_philo *philo);
+t_enum_error	ft_initiate_forks(t_philo *philo);
+t_enum_error	ft_initiate_philosophers(t_philo *philo,
+					t_philosopher **philosophers);
+void			ft_philosopher_has_died(t_philosopher **philosophers);
+void			*ft_run_philosophers(void *arg);
+int				ft_atoi(const char *str);
+int				ft_free(t_philo *philo, t_philosopher **philosophers,
+					int error_code);
+long long		ft_get_time_now(void);
+void			ft_print_action(int philosopher_id, int action_id,
+					t_philo *philo);
+t_enum_error	ft_print_error(int error_code);
+void			ft_print_philosophers(int size, t_philosopher *philosophers);
+long long		ft_time_diff(long long before, long long after);
 
 #endif

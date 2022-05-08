@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 18:11:53 by coder             #+#    #+#             */
-/*   Updated: 2022/05/08 02:48:15 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/05/08 02:58:49 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	ft_isdigit(int c)
 		return (0);
 }
 
-static e_error	ft_check_chars(int argc, char **argv)
+static t_enum_error	ft_check_chars(int argc, char **argv)
 {
 	int	i;
 	int	j;
@@ -40,7 +40,7 @@ static e_error	ft_check_chars(int argc, char **argv)
 	return (E_SUCCESS);
 }
 
-static e_error	ft_check_input(t_philo *philo, int argc)
+static t_enum_error	ft_check_input(t_philo *philo, int argc)
 {
 	philo->forks = NULL;
 	if (philo->number_of_philosophers <= 0)
@@ -58,9 +58,9 @@ static e_error	ft_check_input(t_philo *philo, int argc)
 	return (E_SUCCESS);
 }
 
-e_error	ft_initiate_constraints(int argc, char **argv, t_philo *philo)
+t_enum_error	ft_initiate_constraints(int argc, char **argv, t_philo *philo)
 {
-	int	error_no;
+	t_enum_error	error_no;
 
 	error_no = ft_check_chars(argc, argv);
 	if (error_no != E_SUCCESS)

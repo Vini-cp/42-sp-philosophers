@@ -6,13 +6,13 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 03:33:59 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/05/08 02:47:18 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/05/08 02:59:33 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/philo.h"
 
-static e_error	ft_create_philosophers(t_philo *philo,
+static t_enum_error	ft_create_philosophers(t_philo *philo,
 										t_philosopher **philosophers)
 {
 	int	i;
@@ -38,9 +38,10 @@ static e_error	ft_create_philosophers(t_philo *philo,
 	return (E_SUCCESS);
 }
 
-e_error	ft_initiate_philosophers(t_philo *philo, t_philosopher **philosophers)
+t_enum_error	ft_initiate_philosophers(t_philo *philo,
+											t_philosopher **philosophers)
 {
-	e_error	error_no;
+	t_enum_error	error_no;
 
 	error_no = ft_create_philosophers(philo, philosophers);
 	if (error_no != E_SUCCESS)
