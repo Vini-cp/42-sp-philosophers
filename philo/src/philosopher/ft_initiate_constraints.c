@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 18:11:53 by coder             #+#    #+#             */
-/*   Updated: 2022/05/08 02:58:49 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/05/08 16:45:56 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static t_enum_error	ft_check_chars(int argc, char **argv)
 	int	j;
 
 	i = 1;
-	while (i <= argc)
+	while (i < argc)
 	{
 		j = 0;
 		while (argv[i][j] != '\0')
@@ -62,6 +62,8 @@ t_enum_error	ft_initiate_constraints(int argc, char **argv, t_philo *philo)
 {
 	t_enum_error	error_no;
 
+	if (argc < 5 || argc > 6)
+		return (ft_print_error(E_INVALID_INPUT));
 	error_no = ft_check_chars(argc, argv);
 	if (error_no != E_SUCCESS)
 		return (ft_print_error(error_no));
