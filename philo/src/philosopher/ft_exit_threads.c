@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 01:21:41 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/05/07 22:55:10 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/05/09 01:19:11 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	ft_exit_threads(t_philo *philo, t_philosopher **philosophers)
 		i++;
 	}
 	pthread_mutex_destroy(&(philo->finished_eating));
+	pthread_mutex_destroy(&(philo->print_action));
 	i = 0;
 	while (i < philo->number_of_philosophers)
 	{
