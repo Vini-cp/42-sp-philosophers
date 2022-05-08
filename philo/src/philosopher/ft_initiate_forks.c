@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 20:49:25 by coder             #+#    #+#             */
-/*   Updated: 2022/05/08 02:58:36 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/05/08 16:42:43 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static t_enum_error	ft_create_forks(int size, t_philo *philo)
 static t_enum_error	ft_create_eat_checker(t_philo *philo)
 {
 	if (pthread_mutex_init(&(philo->finished_eating), NULL))
+		return (E_INSTATIATE_MUTEX);
+	if (pthread_mutex_init(&(philo->print_action), NULL))
 		return (E_INSTATIATE_MUTEX);
 	return (E_SUCCESS);
 }
