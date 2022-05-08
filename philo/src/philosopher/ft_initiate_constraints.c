@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 18:11:53 by coder             #+#    #+#             */
-/*   Updated: 2022/05/07 23:55:34 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/05/08 02:48:15 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static e_error	ft_check_chars(int argc, char **argv)
 	while (i <= argc)
 	{
 		j = 0;
-		while(argv[i][j] != '\0')
+		while (argv[i][j] != '\0')
 		{
 			if (!ft_isdigit(argv[i][j]))
 				return (E_NOT_A_NUMBER);
@@ -61,7 +61,7 @@ static e_error	ft_check_input(t_philo *philo, int argc)
 e_error	ft_initiate_constraints(int argc, char **argv, t_philo *philo)
 {
 	int	error_no;
-	
+
 	error_no = ft_check_chars(argc, argv);
 	if (error_no != E_SUCCESS)
 		return (ft_print_error(error_no));

@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 11:33:26 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/05/07 22:54:50 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/05/08 02:28:30 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 	t_philo			philo;
 	t_philosopher	*philosophers;
 
-	philosophers = NULL;	
+	philosophers = NULL;
 	if (ft_initiate_constraints(argc, argv, &philo) != E_SUCCESS)
 		return (0);
 	if (ft_initiate_forks(&philo) != E_SUCCESS)
@@ -30,7 +30,8 @@ int	main(int argc, char **argv)
 	while (i < philo.number_of_philosophers)
 	{
 		philosophers[i].last_meal_was_at = philo.start_time;
-		if (pthread_create(&(philosophers[i].thread_id), NULL, ft_run_philosophers, &(philosophers[i])))
+		if (pthread_create(&(philosophers[i].thread_id),
+				NULL, ft_run_philosophers, &(philosophers[i])))
 			return (ft_free(&philo, &philosophers, E_THREAD_CREATION));
 		i++;
 	}
