@@ -6,7 +6,7 @@
 /*   By: vcordeir <vcordeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 00:25:37 by vcordeir          #+#    #+#             */
-/*   Updated: 2022/05/07 17:31:02 by vcordeir         ###   ########.fr       */
+/*   Updated: 2022/05/09 00:54:26 by vcordeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ static void	ft_philosopher_eat(t_philosopher *philosopher)
 	philo = philosopher->philo;
 	pthread_mutex_lock(&(philo->forks[philosopher->left_fork_id]));
 	ft_print_action(philosopher->id, E_TAKE_A_FORK, philo);
+	if (philosopher->left_fork_id == philosopher->right_fork_id)
+	{
+		usleep(philo->time_to_die * 1000);
+		pthread_mutex_unlock(&(philo->forks[philosopher->left_fork_id]));
+		return ;
+	}		
 	pthread_mutex_lock(&(philo->forks[philosopher->right_fork_id]));
 	ft_print_action(philosopher->id, E_TAKE_A_FORK, philo);
 	pthread_mutex_lock(&(philosopher->last_meal_checker));
@@ -52,7 +58,7 @@ void	*ft_run_philosophers(void *arg)
 	philosopher = (t_philosopher *)arg;
 	philo = philosopher->philo;
 	if (philosopher->id % 2 == 0)
-		usleep(50);
+		usleep(1);
 	while (!philo->has_died)
 	{
 		ft_philosopher_eat(philosopher);
