@@ -29,8 +29,6 @@ PFLAGS		:= -lpthread
 
 CC 			:= gcc
 
-ARGS		:= 3 5000 1000 1000 5
-
 .PHONY: all clean fclean re
 
 all: $(NAME)
@@ -49,9 +47,3 @@ fclean: clean
 	@rm -f $(NAME)
 
 re: fclean all
-
-valgrind:
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./philo ${ARGS}
-
-test:
-	./philo ${ARGS}
