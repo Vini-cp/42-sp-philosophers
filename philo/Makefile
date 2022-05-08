@@ -44,6 +44,6 @@ clean:
 	@rm -rf $(OBJ_FOLDER)
 
 fclean: clean
-	@rm -f $(NAME)
+	@rm -rf $(NAME)
 
 re: fclean all
